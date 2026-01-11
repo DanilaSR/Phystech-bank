@@ -1,0 +1,73 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/Phystech-bank.csproj": {}
+  },
+  "projects": {
+    "/home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/Phystech-bank.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/Phystech-bank.csproj",
+        "projectName": "Phystech-bank",
+        "projectPath": "/home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/Phystech-bank.csproj",
+        "packagesPath": "/home/danila/.nuget/packages/",
+        "outputPath": "/home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/danila/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

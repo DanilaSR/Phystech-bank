@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "lDy3h9dc2Y8p8MkNQr2ov5s8NJiP59c3p2JlcU77v/0cEQUE2DwkKv4D4olTRUI8MmIjnLzMF5meSLw4EN0ZsQ==",
+  "success": true,
+  "projectFilePath": "/home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/Phystech-bank.csproj",
+  "expectedPackageFiles": [
+    "/home/danila/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "/home/danila/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/danila/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+  ],
+  "logs": []
+}
