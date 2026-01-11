@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using FinancialTracking.Domain.Entities;
 
 namespace FinancialTracking.Application.Export
@@ -29,7 +30,7 @@ namespace FinancialTracking.Application.Export
             {
                 category.Id,
                 category.Name,
-                Type = category.Type.ToString(),
+                Type = category.Type, // Просто передаем enum
                 ObjectType = "Category"
             });
         }
@@ -39,7 +40,7 @@ namespace FinancialTracking.Application.Export
             _operations.Add(new
             {
                 operation.Id,
-                operation.Type,
+                Type = operation.Type, // Просто передаем enum
                 operation.BankAccountId,
                 operation.Amount,
                 operation.Date,
@@ -59,11 +60,14 @@ namespace FinancialTracking.Application.Export
                 ExportDate = DateTime.UtcNow
             };
 
-            return JsonSerializer.Serialize(data, new JsonSerializerOptions
+            var options = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+            };
+
+            return JsonSerializer.Serialize(data, options);
         }
     }
 }

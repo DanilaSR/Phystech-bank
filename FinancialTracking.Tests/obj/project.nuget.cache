@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "3icCEQdnZ4MlG1MItSAOt53VwHc5B/6mUK2iBcP0GlNIBdVNYB7Z3+tApOJlrNNfO4ysOCX9Oj3cu0RbOyYMhA==",
+  "dgSpecHash": "Ae+Lqt7nD44hrwgjMNz1D+oPJzi7tdK2wub4A5xBO61XgwDjAImgIEA9hWmlhqKQ/K4ig/5NXX8ql65wtHLtfQ==",
   "success": true,
   "projectFilePath": "/home/danila/Code/Dotnet/FinancialTrackingSolution/FinancialTracking.Tests/FinancialTracking.Tests.csproj",
   "expectedPackageFiles": [
     "/home/danila/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
-    "/home/danila/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
+    "/home/danila/.nuget/packages/coverlet.collector/6.0.4/coverlet.collector.6.0.4.nupkg.sha512",
+    "/home/danila/.nuget/packages/coverlet.msbuild/6.0.4/coverlet.msbuild.6.0.4.nupkg.sha512",
     "/home/danila/.nuget/packages/microsoft.codecoverage/18.0.1/microsoft.codecoverage.18.0.1.nupkg.sha512",
     "/home/danila/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "/home/danila/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",

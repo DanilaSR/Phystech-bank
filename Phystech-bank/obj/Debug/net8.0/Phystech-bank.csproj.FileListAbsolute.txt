@@ -17,3 +17,4 @@
 /home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/obj/Debug/net8.0/Phystech-bank.pdb
 /home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/obj/Debug/net8.0/Phystech-bank.genruntimeconfig.cache
 /home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/obj/Debug/net8.0/ref/Phystech-bank.dll
+/home/danila/Code/Dotnet/FinancialTrackingSolution/Phystech-bank/obj/Debug/net8.0/Phystech-bank.sourcelink.json

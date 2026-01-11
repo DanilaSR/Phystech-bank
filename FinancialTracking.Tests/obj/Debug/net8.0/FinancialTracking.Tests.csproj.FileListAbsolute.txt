@@ -109,3 +109,4 @@
 /home/danila/Code/Dotnet/FinancialTrackingSolution/FinancialTracking.Tests/obj/Debug/net8.0/FinancialTracking.Tests.pdb
 /home/danila/Code/Dotnet/FinancialTrackingSolution/FinancialTracking.Tests/obj/Debug/net8.0/FinancialTracking.Tests.genruntimeconfig.cache
 /home/danila/Code/Dotnet/FinancialTrackingSolution/FinancialTracking.Tests/obj/Debug/net8.0/ref/FinancialTracking.Tests.dll
+/home/danila/Code/Dotnet/FinancialTrackingSolution/FinancialTracking.Tests/obj/Debug/net8.0/FinancialTracking.Tests.sourcelink.json
