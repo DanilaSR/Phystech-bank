@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using FinancialTracking.Application.Commands;
 using FinancialTracking.Application.Commands.Decorators;
 using FinancialTracking.Application.Facades;
+using FinancialTracking.Application.Import;
+using FinancialTracking.Application.Export;  // Добавьте эту директиву
 using FinancialTracking.Domain.Entities;
 using FinancialTracking.Domain.Factories;
 using FinancialTracking.Application.Interfaces;
@@ -32,6 +35,7 @@ namespace FinancialTracking.ConsoleApp
             var operationRepo = serviceProvider.GetRequiredService<IRepository<Operation>>();
             var analytics = serviceProvider.GetRequiredService<IAnalyticsFacade>();
             var logger = serviceProvider.GetRequiredService<ILogger>();
+            var dataTransfer = serviceProvider.GetRequiredService<IDataTransferFacade>();
 
             Console.WriteLine("=== Финансовый учет Физтех-Банка ===");
 
@@ -42,7 +46,9 @@ namespace FinancialTracking.ConsoleApp
                 Console.WriteLine("2. Создать категорию");
                 Console.WriteLine("3. Добавить операцию");
                 Console.WriteLine("4. Показать аналитику");
-                Console.WriteLine("5. Выход");
+                Console.WriteLine("5. Экспорт данных");
+                Console.WriteLine("6. Импорт данных");
+                Console.WriteLine("7. Выход");
 
                 var choice = Console.ReadLine();
 
@@ -61,6 +67,12 @@ namespace FinancialTracking.ConsoleApp
                         ShowAnalytics(analytics);
                         break;
                     case "5":
+                        await ExportData(dataTransfer, accountRepo, categoryRepo, operationRepo);
+                        break;
+                    case "6":
+                        await ImportData(dataTransfer, accountRepo, categoryRepo, operationRepo);
+                        break;
+                    case "7":
                         return;
                 }
             }
@@ -125,11 +137,9 @@ namespace FinancialTracking.ConsoleApp
             Console.Write("Описание (необязательно): ");
             var description = Console.ReadLine();
 
-            // Исправленная строка - добавлен description
             var operation = factory.CreateOperation(type, accountId, amount, categoryId, DateTime.Now, description);
             operationRepo.Add(operation);
             
-            // Update account balance
             var account = accountRepo.GetById(accountId);
             if (account != null)
             {
@@ -155,6 +165,114 @@ namespace FinancialTracking.ConsoleApp
             foreach (var group in grouped)
             {
                 Console.WriteLine($"  {group.Key}: {group.Value:C}");
+            }
+        }
+
+        static async Task ExportData(IDataTransferFacade dataTransfer,
+                                   IRepository<BankAccount> accountRepo,
+                                   IRepository<Category> categoryRepo,
+                                   IRepository<Operation> operationRepo)
+        {
+            Console.WriteLine("Выберите формат экспорта:");
+            Console.WriteLine("1. JSON");
+            Console.WriteLine("2. CSV");
+            
+            var formatChoice = Console.ReadLine();
+            
+            var accounts = accountRepo.GetAll();
+            var categories = categoryRepo.GetAll();
+            var operations = operationRepo.GetAll();
+            
+            string exportData;
+            
+            switch (formatChoice)
+            {
+                case "1":
+                    exportData = dataTransfer.ExportToJson(accounts, categories, operations);
+                    Console.WriteLine("\n=== JSON Export ===");
+                    Console.WriteLine(exportData);
+                    break;
+                case "2":
+                    exportData = dataTransfer.ExportToCsv(accounts, categories, operations);
+                    Console.WriteLine("\n=== CSV Export ===");
+                    Console.WriteLine(exportData);
+                    break;
+                default:
+                    Console.WriteLine("Неверный выбор формата");
+                    return;
+            }
+            
+            Console.Write("\nСохранить в файл? (y/n): ");
+            if (Console.ReadLine()?.ToLower() == "y")
+            {
+                Console.Write("Введите путь к файлу: ");
+                var filePath = Console.ReadLine();
+                
+                try
+                {
+                    dataTransfer.ExportToFile(filePath, accounts, categories, operations);
+                    Console.WriteLine($"Данные успешно экспортированы в {filePath}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка при экспорте: {ex.Message}");
+                }
+            }
+        }
+
+        static async Task ImportData(IDataTransferFacade dataTransfer,
+                                   IRepository<BankAccount> accountRepo,
+                                   IRepository<Category> categoryRepo,
+                                   IRepository<Operation> operationRepo)
+        {
+            Console.Write("Введите путь к файлу для импорта: ");
+            var filePath = Console.ReadLine();
+            
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Файл не найден");
+                return;
+            }
+            
+            try
+            {
+                ImportResult result;
+                var extension = Path.GetExtension(filePath).ToLower();
+                
+                switch (extension)
+                {
+                    case ".json":
+                        result = dataTransfer.ImportFromJson(filePath);
+                        break;
+                    case ".csv":
+                        result = dataTransfer.ImportFromCsv(filePath);
+                        break;
+                    default:
+                        Console.WriteLine($"Неподдерживаемый формат файла: {extension}");
+                        return;
+                }
+                
+                if (result.Success)
+                {
+                    foreach (var account in result.Accounts)
+                        accountRepo.Add(account);
+                    
+                    foreach (var category in result.Categories)
+                        categoryRepo.Add(category);
+                    
+                    foreach (var operation in result.Operations)
+                        operationRepo.Add(operation);
+                    
+                    Console.WriteLine(result.Message);
+                }
+                else
+                {
+                    Console.WriteLine($"Ошибка импорта: {result.Message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при импорте: {ex.Message}");
             }
         }
     }

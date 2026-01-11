@@ -1,0 +1,10 @@
+=== Accounts ===
+Id,Name,Balance
+a04cc06c-3dd4-403a-87b1-4198c3a286a1,dillyric,10000
+
+=== Categories ===
+Id,Name,Type
+
+=== Operations ===
+Id,Type,BankAccountId,Amount,Date,Description,CategoryId
+773bb5f0-b177-45ed-83c7-a485838d6e17,Income,a04cc06c-3dd4-403a-87b1-4198c3a286a1,10000,2026-01-11 03:01:40,,a04cc06c-3dd4-403a-87b1-4198c3a286a1

@@ -1,11 +1,10 @@
-// Infrastructure/DependencyInjection/ServiceCollectionExtensions.cs
 using System;
-using FinancialTracking.Application.Facades;
-using FinancialTracking.Application.Interfaces;
-using FinancialTracking.Domain.Entities;
-using FinancialTracking.Domain.Factories;
-using FinancialTracking.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using FinancialTracking.Application.Interfaces;
+using FinancialTracking.Application.Facades;
+using FinancialTracking.Domain.Factories;
+using FinancialTracking.Domain.Entities;
+using FinancialTracking.Infrastructure.Repositories;
 
 namespace FinancialTracking.Infrastructure.DependencyInjection
 {
@@ -14,16 +13,17 @@ namespace FinancialTracking.Infrastructure.DependencyInjection
         public static IServiceCollection AddFinancialTrackingServices(this IServiceCollection services)
         {
             // Factories
-            _ = services.AddSingleton<IDomainFactory, DomainFactory>();
+            services.AddSingleton<IDomainFactory, DomainFactory>();
 
             // Repositories
-            _ = services.AddSingleton<IRepository<BankAccount>, InMemoryRepository<BankAccount>>();
-            _ = services.AddSingleton<IRepository<Category>, InMemoryRepository<Category>>();
-            _ = services.AddSingleton<IRepository<Operation>, InMemoryRepository<Operation>>();
+            services.AddSingleton<IRepository<BankAccount>, InMemoryRepository<BankAccount>>();
+            services.AddSingleton<IRepository<Category>, InMemoryRepository<Category>>();
+            services.AddSingleton<IRepository<Operation>, InMemoryRepository<Operation>>();
 
             // Facades
-            _ = services.AddSingleton<ICategoryFacade, CategoryFacade>();
-            _ = services.AddSingleton<IAnalyticsFacade, AnalyticsFacade>();
+            services.AddSingleton<ICategoryFacade, CategoryFacade>();
+            services.AddSingleton<IAnalyticsFacade, AnalyticsFacade>();
+            services.AddSingleton<IDataTransferFacade, DataTransferFacade>();  // Добавьте эту строку
 
             // Logging
             services.AddSingleton<ILogger, ConsoleLogger>();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Phystech-bank")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59b425b30e43e5f09f6786f52f969dcc14017be3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf225925bb0971c45a7921788d30b795e1ade16f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Phystech-bank")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Phystech-bank")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
